@@ -1,0 +1,95 @@
+.App {
+  text-align: center;
+  background-color: #15202B;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto";
+}
+
+
+body {
+  background-color: #15202B;
+}
+
+.inputContainer {
+  background-color: #15202B;
+  border: 3px solid white;
+  border-radius: 6px;
+  width: 600px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+justify-content: space-between;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.warning {
+  color: #CCCCCC;
+  align-self: baseline;
+  position: relative;
+  top: 15px;
+  background-color: #F5C6CB;
+  color: #721C24;
+  left: 16px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.btnContainer {
+justify-content: space-between;
+margin-bottom: 20px;
+margin-right: 10px;
+}
+
+.inputBox {
+  flex-basis: 100%;
+}
+
+.inputForm {
+  flex-basis: 100%;
+  background-color: #15202B;
+  border: none;
+  resize: none;
+  color: #CCCCCC;
+}
+
+.inputForm:focus {
+  outline: none;
+
+}
+
+
+.tweetList {
+  display: flex;
+  height: 300px;
+  width: 100%;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+}
+.tweetItem {
+  color: #FFFF;
+  width: 600px;
+  min-height: 64px;
+  background-color: #343A40;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  padding: 20px;
+  font-size: 14px;
+
+  }
+
+  .tweetHeader {
+    display: flex;
+    justify-content: space-between;
+    color: #6C757D;
+  }
+
+  .tweetText {
+    display: flex;
+  align-items: right;
+  }
