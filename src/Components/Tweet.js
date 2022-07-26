@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Tweet({ tweet }) {
+export default function Tweet({ tweet, id, userName, date }) {
   return (
-    <div className="tweetItem" key={tweet.id} id={tweet.id}>
+    <div className="tweetItem" key={id} id={id}>
       <div className="tweetHeader">
-        <div className="username">{tweet.userName}</div>
-        <div className="date">{tweet.date}</div>
+        <div className="username">{userName}</div>
+        <div className="date">{date}</div>
       </div>
-      <div className="tweetText">{tweet.text}</div>
+      <div className="tweetText">{tweet}</div>
     </div>
   );
 }

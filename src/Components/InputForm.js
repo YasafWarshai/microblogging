@@ -1,26 +1,26 @@
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function InputForm({ addTweet }) {
+export default function InputForm({ apiUrl }) {
   const [text, setText] = useState("");
-  const [input, setDisable] = useState("true");
 
   const handleText = (e) => {
-    setDisable(e.target.value);
-
     setText(e.target.value);
   };
 
   const handleSubmit = () => {
-    const newTweet = {
-      id: nanoid(),
-      text: text,
-      date: new Date().toLocaleString(),
-      userName: "YasafWarshai",
-    };
-
-    addTweet(newTweet);
-    setText("");
+    axios
+      .post(apiUrl, {
+        userName: "Yasaf",
+        content: text,
+        date: new Date().toISOString(),
+      })
+      .catch(function (error) {
+        window.alert(`${error}, please try again in a minute`);
+      })
+      .then(() => {
+        setText("");
+      });
   };
 
   return (
@@ -43,7 +43,7 @@ export default function InputForm({ addTweet }) {
           className="btn btn-primary"
           onClick={handleSubmit}
         >
-          tweet
+          Tweet
         </button>
       </div>
     </div>
