@@ -14,12 +14,12 @@ function TweetList({ apiUrl }) {
       .then((response) => {
         const { tweets } = response.data;
         setServerList(tweets);
-        setLoading(false)
+        setLoading(false);
       })
       .catch(function (error) {
         window.alert(error);
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   };
 
   useEffect(() => {

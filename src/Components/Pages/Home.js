@@ -1,15 +1,14 @@
-import "./App.css";
-import TweetList from "./Components/TweetList";
+import "./styles.css";
+import TweetList from "../TweetList";
 import { useState } from "react";
-import InputForm from "./Components/InputForm";
+import InputForm from "../InputForm";
 import "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function App(Tweets, newTweet) {
+function Home(Tweets, newTweet) {
   const apiUrl =
     "https://micro-blogging-dot-full-stack-course-services.ew.r.appspot.com/tweet";
   const [tweetList, setTweetList] = useState([]);
-
 
   const addTweet = (newTweet) => {
     const Tweets = [newTweet, ...tweetList];
@@ -17,7 +16,7 @@ function App(Tweets, newTweet) {
   };
 
   return (
-    <div className="App">
+    <div className="Home">
       <InputForm addTweet={addTweet} apiUrl={apiUrl} />
       <TweetList
         tweetList={tweetList}
@@ -29,4 +28,4 @@ function App(Tweets, newTweet) {
   );
 }
 
-export default App;
+export default Home;

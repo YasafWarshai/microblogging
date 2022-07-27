@@ -8,10 +8,16 @@ export default function InputForm({ apiUrl }) {
     setText(e.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = () => {
     axios
       .post(apiUrl, {
-        userName: "Yasaf",
+        userName: localStorage.getItem("twitter-username"),
         content: text,
         date: new Date().toISOString(),
       })
@@ -29,6 +35,7 @@ export default function InputForm({ apiUrl }) {
         <textarea
           required
           onChange={handleText}
+          onKeyDown={handleKeyPress}
           className="inputForm"
           value={text}
           placeholder="What do you have in mind..."
