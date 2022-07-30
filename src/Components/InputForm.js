@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import tweetContext from "./TweetContext";
+import { useContext } from "react";
 
 export default function InputForm({ apiUrl }) {
-  const [text, setText] = useState("");
+  const {text, setText} = useContext(tweetContext);
+  
 
   const handleText = (e) => {
     setText(e.target.value);

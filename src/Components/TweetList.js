@@ -3,17 +3,19 @@ import Tweet from "./Tweet";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { useContext } from "react";
+import tweetContext from "./TweetContext";
 
 function TweetList({ apiUrl }) {
-  const [Serverlist, setServerList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {listofTweets, setListofTweets} = useContext(tweetContext)
 
   const createTweetList = () => {
     axios
       .get(apiUrl)
       .then((response) => {
         const { tweets } = response.data;
-        setServerList(tweets);
+        setListofTweets(tweets);
         setLoading(false);
       })
       .catch(function (error) {
@@ -28,7 +30,7 @@ function TweetList({ apiUrl }) {
 
   return (
     <div className="tweetList">
-      {Serverlist.map((object) => (
+      {listofTweets.map((object) => (
         <Tweet
           tweet={object.content}
           id={object.id}

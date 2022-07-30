@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react";
+
 
 export default function Profile({ setUserInfo }) {
   const localName = localStorage.getItem("twitter-username");
   const [input, setInput] = useState("");
+ 
 
   const handleChange = (e) => {
     localStorage.setItem("twitter-username", e.target.value);
@@ -11,7 +14,6 @@ export default function Profile({ setUserInfo }) {
   };
   const handleUserNameInput = () => {
     setInput(localName);
-    setUserInfo(localName);
   };
 
   return (
