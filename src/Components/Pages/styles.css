@@ -163,8 +163,8 @@ body {
 }
 
 .loginForm {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .emailInput {
@@ -194,7 +194,7 @@ flex-direction: column;
   margin-top: 15px;
 }
 
-.profile-title{ 
+.profile-title {
   color: white;
   margin-bottom: 2px;
   margin-top: 150px;

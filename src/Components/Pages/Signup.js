@@ -1,58 +1,45 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import {
-  getAuth,
-  getRedirectResult,
-  signInWithPopup,
-  GoogleAuthProvider,
-  UserCredential
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import UserContext from "../UserContext";
-import { setDoc } from "firebase/firestore";
 
 export default function Signup() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { toggleAuth, authStatus, userId, setUserId, setUserReference, setUserName, setEmail, email } =
-    useContext(UserContext);
+  const {
+    toggleAuth,
+    authStatus,
+    setUserId,
+    setUserReference,
+    setUserName,
+    setEmail,
+    email,
+  } = useContext(UserContext);
   const auth = getAuth();
-  const user = auth.currentUser;
-  const provider = new GoogleAuthProvider();
-  const db = getFirestore();
-  const collectionReference = collection(db, "users");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await handleLogin();
   };
 
-  const updateUserName = (props) => {
-    setUserName(props);
-  };
-
-
   const handleLogin = async (e) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .catch((error) => {
         window.alert(error.message);
       })
-      .then(
-        (userCredential) => {
-       const user = userCredential.user;
-       setUserReference(user.uid, {
-        email: user.email,
-        userName: user.email
-       })
-       toggleAuth()
-       console.log(toggleAuth)
-       console.log(authStatus)
-       navigate('/')
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUserReference(user.uid, {
+          email: user.email,
+          userName: user.email,
         });
-   
-      };
-  
+        toggleAuth();
+        setUserId(user.uid);
+        console.log(authStatus);
+        navigate("/");
+      });
+  };
 
   return (
     <div className="login-form">
@@ -87,7 +74,6 @@ export default function Signup() {
         >
           Login with existing account
         </button>
-       
       </div>
     </div>
   );

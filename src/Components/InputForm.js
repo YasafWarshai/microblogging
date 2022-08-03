@@ -4,10 +4,9 @@ import { useContext } from "react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default function InputForm({ apiUrl }) {
-  const {text, setText} = useContext(tweetContext);
-  const db = getFirestore()
-  const collectionReference = collection(db, 'tweets')
-  
+  const { text, setText } = useContext(tweetContext);
+  const db = getFirestore();
+  const collectionReference = collection(db, "tweets");
 
   const handleText = (e) => {
     setText(e.target.value);

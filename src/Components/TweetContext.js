@@ -1,8 +1,5 @@
 import { createContext } from "react";
 
-const tweetContext = createContext()
+const tweetContext = createContext();
 
-export default tweetContext; ;
-
-
-
+export default tweetContext;

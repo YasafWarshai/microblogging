@@ -4,30 +4,39 @@ import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useContext } from "react";
 import tweetContext from "./TweetContext";
-import { getFirestore, collection, getDocs, orderBy, onSnapshot, query } from 'firebase/firestore'
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  orderBy,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 
 function TweetList() {
   const [loading, setLoading] = useState(true);
-  const {listofTweets, setListofTweets} = useContext(tweetContext)
+  const { listofTweets, setListofTweets } = useContext(tweetContext);
 
   const createTweetList = () => {
-    setLoading(true)
-    const db = getFirestore()
-  
-  const collectionReference = (collection(db, 'tweets'))
-  
-  const q = query(collectionReference, orderBy('date', 'desc'));
-  onSnapshot(q, ({ docs }) => {
-    setListofTweets(docs.map(tweet => {
-      return {...tweet.data(), id: tweet.id}
-    }))
-  })
-  setLoading(false)  
-};
+    setLoading(true);
+    const db = getFirestore();
+
+    const collectionReference = collection(db, "tweets");
+
+    const q = query(collectionReference, orderBy("date", "desc"));
+    onSnapshot(q, ({ docs }) => {
+      setListofTweets(
+        docs.map((tweet) => {
+          return { ...tweet.data(), id: tweet.id };
+        })
+      );
+    });
+    setLoading(false);
+  };
 
   useEffect(() => {
     createTweetList();
-  },[]);
+  }, []);
 
   return (
     <div className="tweetList">
@@ -39,7 +48,7 @@ function TweetList() {
           userName={tweet.userName}
           date={tweet.date}
         />
-      ))} 
+      ))}
       <Spinner
         animation="border"
         role="status"
