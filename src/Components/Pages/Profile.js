@@ -1,39 +1,50 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import UserContext from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 
-export default function Profile({ setUserInfo }) {
-  const localName = localStorage.getItem("twitter-username");
-  const [input, setInput] = useState("");
+export default function Profile() {
+  const [tempName, setTempName] = useState('')
+  const { userName, setUserName, setUserReference } = useContext(UserContext)
+  const [input, setInput] = useState(userName);
+  const [profileImage, setProfileImage] = useState()
+  const navigate = useNavigate()
+
+
+
+
  
 
   const handleChange = (e) => {
-    localStorage.setItem("twitter-username", e.target.value);
+    setTempName(e.target.value)
     setInput(e.target.value);
   };
-  const handleUserNameInput = () => {
-    setInput(localName);
+
+  const handleUserNameInput = (e) => {
+    e.preventDefault()
+    setUserName(tempName)
+    navigate('/')
   };
 
   return (
-    <div className="profile-container">
-      <h1>Profile</h1>
+    <form className="profile-container" onSubmit={handleUserNameInput}>
+      <h1 className="profile-title">Username</h1>
       <textarea
         className="userNameInput"
-        value={localName}
-        onChange={handleChange}
+defaultValue={userName} onChange={handleChange}
       >
-        {input}
       </textarea>
       <div className="saveButtonContainer">
         <button
           className=" saveUser btn btn-primary"
-          onClick={handleUserNameInput}
+          
+          type={'submit'}
         >
           Save
         </button>
       </div>
-    </div>
+    </form>
   );
 }

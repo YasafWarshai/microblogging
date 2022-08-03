@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 import tweetContext from "./TweetContext";
 import { useContext } from "react";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default function InputForm({ apiUrl }) {
   const {text, setText} = useContext(tweetContext);
+  const db = getFirestore()
+  const collectionReference = collection(db, 'tweets')
   
 
   const handleText = (e) => {
@@ -18,12 +20,11 @@ export default function InputForm({ apiUrl }) {
   };
 
   const handleSubmit = () => {
-    axios
-      .post(apiUrl, {
-        userName: localStorage.getItem("twitter-username"),
-        content: text,
-        date: new Date().toISOString(),
-      })
+    addDoc(collectionReference, {
+      userName: localStorage.getItem("twitter-username"),
+      text: text,
+      date: new Date().toISOString(),
+    })
       .catch(function (error) {
         window.alert(`${error}, please try again in a minute`);
       })
