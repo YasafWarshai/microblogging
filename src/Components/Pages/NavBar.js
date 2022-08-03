@@ -12,8 +12,8 @@ const navigate = useNavigate()
 
 const logout = () => {
   signOut(auth)
-  let setAuthStatus = false 
-  navigate('/signup')
+  setAuthStatus(false)
+  navigate('/login')
 }
 
   return (

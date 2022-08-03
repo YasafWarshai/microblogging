@@ -14,9 +14,6 @@ export default function Profile() {
 
 
 
-
- 
-
   const handleChange = (e) => {
     setTempName(e.target.value)
     setInput(e.target.value);

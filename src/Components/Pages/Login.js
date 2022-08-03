@@ -98,9 +98,9 @@ console.log('here')
        <div className="googleHolder">
         <button
           className="btn btn-secondary googleButton"
-          onClick={() => navigate("/Login")}
+          onClick={() => navigate("/signup")}
         >
-          Login with existing account
+create a new account
         </button>
         <button
           className="btn btn-secondary googleButton"
